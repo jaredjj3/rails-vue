@@ -11,10 +11,16 @@
         <th>department</th>
       </tr>
     </thead>
-    <tbody v-for="status in statuses" :key="status.id">
+    <tbody v-for="status in copiedStatuses" :key="status.order_line_id">
       <tr>
         <td><search v-bind:external-id="status.order_line.shipment.number" /></td>
-        <td><toggle-lock-btn v-bind:locked="status.locked"></toggle-lock-btn></td>
+        <td>
+          <toggle-lock-btn
+            v-bind:locked="status.locked"
+            v-bind:status-created="statusCreated"
+            v-bind:order-line-id="status.order_line_id"
+          ></toggle-lock-btn>
+        </td>
         <td>{{ status.order_line.quantity }}</td>
         <td><search v-bind:external-id="status.order_line.sku_id" /></td>
         <td>{{ new Date(status.created_at).toLocaleString() }}</td>
@@ -36,6 +42,20 @@ export default {
   components: {
     'search': Search,
     'toggle-lock-btn': ToggleLockBtn
+  },
+  data() {
+    return {
+      copiedStatuses: this.statuses.map(status => status)
+    }
+  },
+  methods: {
+    statusCreated(newStatus) {
+      this.copiedStatuses = this.copiedStatuses.filter(status => (
+        status.order_line_id !== newStatus.order_line_id
+      ));
+
+      this.copiedStatuses.push(newStatus);
+    }
   }
 }
 </script>
