@@ -1,6 +1,7 @@
 <%= javascript_pack_tag "order_line_statuses/index" %>
 
-<app>
-  <div><%= Time.current %></div>
-  <div>{{ time }}</div>
-</app>
+<div id="root">
+  <order-line-status-table
+    v-bind:order-line-statuses="<%= @order_line_statuses.to_json %>"
+  />
+</div>
