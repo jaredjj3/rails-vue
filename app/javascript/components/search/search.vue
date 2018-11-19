@@ -1,5 +1,5 @@
 <template>
-  <a href="`/search?query=${externalId}`" />
+  <a v-bind:href="`search?query=${externalId}`">{{ externalId }}</a>
 </template>
 
 <script>
