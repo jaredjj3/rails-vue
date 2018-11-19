@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { StatusTable } from '../status-table';
+import StatusTable from './status-table';
 
 export default {
   props: {
