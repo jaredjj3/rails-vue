@@ -1,9 +1,9 @@
 import vue from '../../util/vue';
-import OrderLineStatusTable from './table/order-line-status-table.vue';
+import { StatusTable } from './status-table';
 
 vue({
   el: '#root',
   components: {
-    'order-line-status-table': OrderLineStatusTable
+    'status-table': StatusTable
   }
 });

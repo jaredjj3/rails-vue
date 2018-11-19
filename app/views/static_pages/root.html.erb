@@ -1,7 +1,5 @@
 <%= javascript_pack_tag "order_line_statuses/index" %>
 
 <div id="root">
-  <order-line-status-table
-    v-bind:order-line-statuses="<%= @order_line_statuses.to_json %>"
-  />
+  <status-table v-bind:statuses="<%= @statuses.to_json %>" />
 </div>
