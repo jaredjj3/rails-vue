@@ -1,5 +1,12 @@
 <%= javascript_pack_tag "order_line_statuses/index" %>
 
 <div id="root">
-  <status-table v-bind:statuses="<%= @statuses.to_json %>" />
+  <h1>Ungrouped Status Table</h1>
+  <status-table v-bind:statuses="<%= @statuses.shuffle.to_json %>"></status-table>
+
+  <h1>Grouped Status Table</h1>
+  <grouped-status-table
+    v-bind:statuses="<%= @statuses.to_json %>"
+    v-bind:group-by="status => status.order_line.shipment.number"
+  ></grouped-status-table>
 </div>
